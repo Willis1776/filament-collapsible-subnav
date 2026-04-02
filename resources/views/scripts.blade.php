@@ -7,7 +7,8 @@
     .fi-subnav-collapsed .fi-page-sub-navigation-sidebar .fi-sidebar-item-label,
     .fi-subnav-collapsed .fi-page-sub-navigation-sidebar .fi-badge,
     .fi-subnav-collapsed .fi-page-sub-navigation-sidebar .fi-sidebar-group-label { display: none; }
-    .fi-subnav-collapsed .fi-page-sub-navigation-sidebar .fi-sidebar-item-button {
+    .fi-subnav-collapsed .fi-page-sub-navigation-sidebar .fi-sidebar-item-button,
+    .fi-subnav-collapsed .fi-page-sub-navigation-sidebar .fi-sidebar-item-btn {
         justify-content: center;
         padding-left: 0.75rem;
         padding-right: 0.75rem;
@@ -54,7 +55,7 @@
 
                     const items = sidebar.querySelectorAll('.fi-sidebar-item');
                     items.forEach(item => {
-                        const button = item.querySelector('.fi-sidebar-item-button');
+                    const button = item.querySelector('.fi-sidebar-item-button, .fi-sidebar-item-btn');
                         const label = item.querySelector('.fi-sidebar-item-label');
                         
                         if (button && label && !button.hasAttribute('data-tippy-content')) {
@@ -87,7 +88,7 @@
                 const sidebar = document.querySelector('.fi-page-sub-navigation-sidebar');
                 if (!sidebar) return;
 
-                const items = sidebar.querySelectorAll('.fi-sidebar-item-button');
+                    const items = sidebar.querySelectorAll('.fi-sidebar-item-button, .fi-sidebar-item-btn');
                 items.forEach(button => {
                     // Destroy Tippy instance if it exists
                     if (button._tippy) {

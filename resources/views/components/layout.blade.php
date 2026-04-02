@@ -13,7 +13,7 @@
     dir="{{ __('filament-panels::layout.direction') ?? 'ltr' }}"
     @class([
         'fi',
-        'dark' => filament()->hasDarkModeForced(),
+        'dark' => filament()->hasDarkMode() && filament()->hasDarkModeForced(),
         'fi-subnav-collapsed' => $isSubNavCollapsed,
         'fi-subnav-server-rendered', // Marker class
     ])
@@ -92,6 +92,11 @@
         @filamentStyles
 
         {{ filament()->getTheme()->getHtml() }}
+        @if (method_exists(filament(), 'getFontPreloadHtml'))
+            {{ filament()->getFontPreloadHtml() }}
+            {{ filament()->getMonoFontPreloadHtml() }}
+            {{ filament()->getSerifFontPreloadHtml() }}
+        @endif
         {{ filament()->getFontHtml() }}
         {{ filament()->getMonoFontHtml() }}
         {{ filament()->getSerifFontHtml() }}
