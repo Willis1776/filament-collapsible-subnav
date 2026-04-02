@@ -101,12 +101,25 @@
             }
         });
 
+        const syncSubnavFromStore = () => {
+            document.documentElement.classList.add('fi-subnav-ready');
+            const subnavStore = Alpine.store('subnav');
+            if (!subnavStore) return;
+
+            if (subnavStore.isOpen) {
+                document.documentElement.classList.remove('fi-subnav-collapsed');
+                subnavStore.removeTooltips();
+            } else {
+                document.documentElement.classList.add('fi-subnav-collapsed');
+                subnavStore.addTooltips();
+            }
+        };
+
         // Enable transitions after load and init tooltips if collapsed
         setTimeout(() => {
-            document.documentElement.classList.add('fi-subnav-ready');
-            if (!Alpine.store('subnav').isOpen) {
-                Alpine.store('subnav').addTooltips();
-            }
+            syncSubnavFromStore();
         }, 100);
+
+        document.addEventListener('livewire:navigated', syncSubnavFromStore);
     });
 </script>
